@@ -2,8 +2,9 @@ import {FC, useEffect, useState} from 'react';
 import {Button, Steps, message, Select} from "antd";
 import * as React from "react";
 import Form from "./../../components/Form.jsx";
-import FormSkladnik from "../FormSkladnik/FormSkladnik.tsx";
-import Opis from "../Opis/Opis.tsx";
+import FormSkladnik from "../FormSkladnik/FormSkladnik";
+import Opis from "../Opis/Opis";
+
 
 const Steper: FC<{ isModalOpen: any, setModalOpen: any }> = ({isModalOpen, setModalOpen}) => {
     const [current, setCurrent] = useState(0);
@@ -16,7 +17,7 @@ const Steper: FC<{ isModalOpen: any, setModalOpen: any }> = ({isModalOpen, setMo
     const steps = [
         {
             content: <FormSkladnik setSklad={setName} skladnik={name} rodziaj={rodziaj} setRodziaj={setRodziaj}
-                                   photo={fileList} setFileList={setFileList}/>,
+                                   setFileList={setFileList}/>,
         },
         {
             content: <Form stateFromParent={state} setStateFromParent={setState}/>,

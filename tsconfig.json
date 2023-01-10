@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    // ... rest
+    "jsx": "react"
+  },
+  "include": ["src", "index.d.ts"]
+
+}

@@ -9,7 +9,7 @@ import Row from "antd/es/grid/row";
 const {Title} = Typography;
 
 
-const FormSkladnik: React.FC<{setSklad: any, skladnik: any, rodziaj:any, setRodziaj: any, fileList:any, setFileList:any}> = ({setSklad,setRodziaj, skladnik, rodziaj, fileList, setFileList}) => {
+const FormSkladnik: React.FC<{setSklad: any, skladnik: any, rodziaj:any, setRodziaj: any, fileList?:any, setFileList:any}> = ({setSklad,setRodziaj, skladnik, rodziaj, fileList, setFileList}) => {
     const [form] = Form.useForm();
 
 

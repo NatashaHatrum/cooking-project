@@ -1,7 +1,7 @@
 import {FC, useState} from 'react';
 import {Button, Modal, Steps} from "antd";
 import * as React from "react";
-import Steper from "../Stepers/Steper.tsx";
+import Steper from "../Stepers/Steper";
 
 
 const DodajPrszepis: FC = () => {
