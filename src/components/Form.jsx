@@ -2,16 +2,17 @@ import {useState, useEffect} from "react";
 import React from "react";
 import '../App.css';
 import Input from "antd/es/input";
-import {Button, Select, Typography} from 'antd';
+import {Button, Select, Space, Typography} from 'antd';
 import Col from "antd/es/grid/col";
 import Row from "antd/es/grid/row";
 import {
-    MediumOutlined,
+    ShopOutlined,
     PlusOutlined,
     AppleOutlined,
-    FileWordOutlined,
+    ShoppingOutlined,
     ShoppingCartOutlined,
-    TrademarkOutlined
+    ScheduleOutlined,
+    RestOutlined
 } from '@ant-design/icons';
 import {v4 as uuidv4} from 'uuid';
 
@@ -19,18 +20,12 @@ import {v4 as uuidv4} from 'uuid';
 const {Title} = Typography;
 
 
-
-
-
-
-const Form = ({stateFromParent,setStateFromParent}) => {
-   /* const [colorTla, setColorTla] = useState(false);
-    const kolor = ()  =>{
-        setColorTla(!colorTla)
-    };
-*/
-
-
+const Form = ({stateFromParent, setStateFromParent}) => {
+    /* const [colorTla, setColorTla] = useState(false);
+     const kolor = ()  =>{
+         setColorTla(!colorTla)
+     };
+ */
 
     const [valueInput, setValueInput] = useState('');
     const [valueSelect, setValueSelect] = useState('');
@@ -51,12 +46,12 @@ const Form = ({stateFromParent,setStateFromParent}) => {
         setValueQuantitySelect(null);
         setValueSelect(null)
     };
-/*const setCookie =() =>{
-    document.cookie = 'name = Natasha'
-};
-const getCookie =()=>{
-    alert(document.cookie)
-}*/
+    /*const setCookie =() =>{
+        document.cookie = 'name = Natasha'
+    };
+    const getCookie =()=>{
+        alert(document.cookie)
+    }*/
 
     const rodziaj = (valueSelect) => {
         setValueSelect(valueSelect)
@@ -76,18 +71,22 @@ const getCookie =()=>{
 
     const colorButtons = (typProduktu) => {
         switch (typProduktu) {
-            case 'mięso, ryba':
-                return (
-                    'primary'
-                );
 
             case 'warzywa':
                 return (
                     'text '
                 );
-            case 'owoce':
+            case 'owocy':
+                return (
+                    'default '
+                );
+            case 'bakaleja':
                 return (
                     'dashed '
+                );
+            case 'produkty mleczne' :
+                return (
+                    'default '
                 );
             case 'inne' :
                 return (
@@ -103,26 +102,27 @@ const getCookie =()=>{
 
     const ikonsButtons = (typProdukyu) => {
         switch (typProdukyu) {
-            case 'mięso':
+            case 'bakaleja':
                 return (
-                    <MediumOutlined/>
+                    <ShopOutlined/>
                 );
             case 'warzywa':
                 return (
-                <FileWordOutlined/>
-            );
-                case 'ryba':
+                    <ShoppingOutlined/>
+                );
+            case 'produkty mleczne':
                 return (
-                <TrademarkOutlined/>
-            );
-            case 'owoce':
+                    <RestOutlined/>
+                );
+            case 'owocy':
                 return (
                     <AppleOutlined/>
                 );
             case 'inne':
                 return (
-                    <ShoppingCartOutlined/>
+                    <ScheduleOutlined/>
                 );
+
             default:
                 return (
                     <ShoppingCartOutlined/>
@@ -130,7 +130,6 @@ const getCookie =()=>{
                 )
         }
     };
-
 
 
     useEffect(() => {
@@ -143,164 +142,168 @@ const getCookie =()=>{
         else setStateFromParent([])
 
     }, []);
-
-/*useEffect(()=>{
-   if(colorTla){
-       document.getElementById('root').style.backgroundColor = 'red'
-   } else{
-       document.getElementById('root').style.backgroundColor = 'white'
-   }
-},[colorTla]);*/
+    console.log(stateFromParent)
+    /*useEffect(()=>{
+       if(colorTla){
+           document.getElementById('root').style.backgroundColor = 'red'
+       } else{
+           document.getElementById('root').style.backgroundColor = 'white'
+       }
+    },[colorTla]);*/
     return (
         <>
-            <Row gutter={17} justify='center'>
-                <Col>
-                    <Row style={{
-                        padding: '8px 0',
-                    }}>
-                        <Col span={24}>
-                            <Title level={2}>Dodaj skladniki</Title>
-                            <Input
-                                style={{
-                                    marginBottom: '10px'
-                                }}
-                                type='text'
-                                placeholder='Skladnik'
-                                value={valueInput}
-                                onChange={(el) => {
-                                    setValueInput(el.target.value)
-                                }}
-                            />
-                        </Col>
-                        <Col span={17}>
-                            <Input
-                                type='number'
-                                placeholder='Ilość'
-                                value={valueQuantity}
-                                onChange={(el) => {
-                                    setValueQuantity(el.target.value)
-                                }}
-                            />
-                        </Col>
 
-                        <Col span={7}>
-                            <Select
-                                style={{
-                                    width: '100%'
-                                }}
-                                defaultValue=''
-                                disabled={valueInput.length <= 0}
-                                onChange={ilosc}
-                                options={[
-                                    {
-                                        value: 'gr',
-                                        label: 'gr'
-                                    },
-                                    {
-                                        value: 'kg',
-                                        label: 'kg'
-                                    },
-                                    {
-                                        value: 'ml',
-                                        label: 'ml'
-                                    },
-                                    {
-                                        value: 'l',
-                                        label: 'l'
-                                    },
-                                    {
-                                        value: 'lyż',
-                                        label: 'lyż'
-                                    },
-                                    {
-                                        value: 'szt',
-                                        label: 'szt'
-                                    }
-                                ]}
-                            />
+            <Row justify='center'>
 
-                        </Col>
-                    </Row>
+                <Col span={24}>
+                    <Title level={2}>Dodaj skladniki</Title>
+                    <Input
+                        style={{
+                            marginBottom: '10px'
+                        }}
+                        type='text'
+                        placeholder='Skladnik'
+                        value={valueInput}
+                        onChange={(el) => {
+                            setValueInput(el.target.value)
+                        }}
+                    />
+                </Col>
+            </Row>
+            <Row gutter={[12, 12]}>
 
-                    <Row>
-                        <Col span={24}>
-                            <Select
-                                defaultValue=''
-                                disabled={valueInput.length <= 0}
-                                style={{
-                                    width: '100%',
-                                    marginTop: '10px'
-                                }}
-                                onChange={rodziaj}
-                                options={[
-                                    {
-                                        value: 'mięso',
-                                        label: 'Mięso'
-                                    },
-                                    {
-                                        value: 'ryba',
-                                        label: 'Ryba'
-                                    },
-                                    {
-                                        value: 'warzywa',
-                                        label: 'Warzywa'
-                                    },
-                                    {
-                                        value: 'owoce',
-                                        label: 'Owoce'
-                                    },
+                <Col span={18}>
 
-                                    {
-                                        value: 'inne',
-                                        label: 'Inne'
-                                    }
-                                ]}
-                            />
-                        </Col>
-                    </Row>
+                    <Input
+                        type='number'
+                        placeholder='Ilość'
+                        value={valueQuantity}
+                        onChange={(el) => {
+                            setValueQuantity(el.target.value)
+                        }}
 
+                    />
+                </Col>
+                <Col span={6}>
+                    <Select
+                        style={{
+                            width: '100%'
+                        }}
+                        defaultValue=''
+                        disabled={valueInput.length <= 0}
+                        onChange={ilosc}
+                        options={[
+                            {
+                                value: 'gr',
+                                label: 'gr'
+                            },
+                            {
+                                value: 'kg',
+                                label: 'kg'
+                            },
+                            {
+                                value: 'ml',
+                                label: 'ml'
+                            },
+                            {
+                                value: 'l',
+                                label: 'l'
+                            },
+                            {
+                                value: 'lyż',
+                                label: 'lyż'
+                            },
+                            {
+                                value: 'szt',
+                                label: 'szt'
+                            }
+                        ]}
+                    />
 
-                    <Row><Col>
-                        <Button
-                            icon={<PlusOutlined/>}
-                            disabled={valueInput.length <= 0}
-                            onClick={() => zupa()}
-                            style={{marginTop: '10px'}}
-                        >
+                </Col>
 
-                            Dodaj skladnik
-                        </Button>
-                    </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            < Title level={4}> Lista dodanych produktów </Title>
+            </Row>
+
+            <Row>
+                <Col span={24}>
+                    <Select
+                        defaultValue=''
+                        disabled={valueInput.length <= 0}
+                        style={{
+                            width: '100%',
+                            marginTop: '10px'
+                        }}
+                        onChange={rodziaj}
+                        options={[
+                            {
+                                value: 'warzywa',
+                                label: 'Warzywa'
+                            },
+                            {
+                                value: 'owoce',
+                                label: 'Owoce'
+                            },
 
                             {
-                                stateFromParent ?
-                                    stateFromParent.map((el, index) =>
-                                        <Row gutter={[16, 16]} key={index}>
+                                value: 'produkty mleczne',
+                                label: 'Produkty mleczne'
+                            },
 
-                                            <Button
-                                                onClick={() => deleteItem(el.id)}
-                                                icon={ikonsButtons(el.type)}
-                                                type={colorButtons(el.type)}
-                                                style={{
-                                                    marginTop: '10px',
-                                                    width: '100%'
-                                                }}
-                                            >{el.name} {el.quantity.weight} {el.quantity.measurementUnits}</Button>
-                                        </Row>
-                                    )
-                                    : 'Brak '
-
+                            {
+                                value: 'bakaleja',
+                                label: 'Bakaleja'
+                            },
+                            {
+                                value: 'inne',
+                                label: 'Inne'
                             }
-                        </Col>
-                    </Row>
+                        ]}
+                    />
                 </Col>
             </Row>
 
-    {/*        <button
+            <Row gutter={[24]} justify='center'>
+                <Col span={24}>
+                    <Button
+                        icon={<PlusOutlined/>}
+                        disabled={valueInput.length <= 0}
+                        onClick={() => zupa()}
+                        style={{marginTop: '10px'}}
+                    >
+                        Dodaj skladnik
+                    </Button>
+                </Col>
+            </Row>
+            <Row gutter={[24]} justify='center'>
+                <Col span={24}>
+                    < Title level={4} style={{textAlign: 'center', paddingTop: '2%'}}> Lista dodanych
+                        produktów: </Title>
+                    {
+                        stateFromParent ?
+                            stateFromParent.map((el, index) =>
+                                <Row  key={index}>
+                                    <Col span={24}>
+                                        <Button
+                                            onClick={() => deleteItem(el.id)}
+                                            icon={ikonsButtons(el.type)}
+                                            type={colorButtons(el.type)}
+                                            style={{
+                                                marginTop: '10px',
+                                                width: '100%',
+                                               marginBottom:'10px'
+                                            }}
+                                        >{el.name} {el.quantity.weight} {el.quantity.measurementUnits}</Button>
+                                    </Col>
+                                </Row>
+                            )
+                            : 'Brak '
+
+                    }
+                </Col>
+            </Row>
+
+
+            {/*        <button
            onClick = {kolor}> Zmień tlo</button>
 */}
         </>

@@ -1,4 +1,6 @@
 
+@import 'antd/dist/reset.css';
+
 .glownePhoto img{
   width: 100%;
 height: auto;
@@ -9,3 +11,9 @@ height: auto;
   max-height: 20px;
 }
 
+.title{
+    font-family: 'Courgette', cursive;
+    font-size: 50px!important;
+    color: white!important;
+    text-shadow: 4px  4px 4px black;
+}

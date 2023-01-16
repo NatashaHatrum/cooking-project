@@ -1,10 +1,10 @@
-import {FC, useEffect, useState} from 'react';
-import {Button, Steps, message, Select} from "antd";
+import {FC, useState} from 'react';
+import {Button, Steps, message} from "antd";
 import * as React from "react";
 import Form from "./../../components/Form.jsx";
 import FormSkladnik from "../FormSkladnik/FormSkladnik";
 import Opis from "../Opis/Opis";
-
+import {v4 as uuidv4} from 'uuid';
 
 const Steper: FC<{ isModalOpen: any, setModalOpen: any }> = ({isModalOpen, setModalOpen}) => {
     const [current, setCurrent] = useState(0);
@@ -13,6 +13,10 @@ const Steper: FC<{ isModalOpen: any, setModalOpen: any }> = ({isModalOpen, setMo
     const [rodziaj, setRodziaj] = useState();
     const [fileList, setFileList] = useState([]);
     const [opis, setOpis] = useState();
+    const [waga, setWaga] = useState();
+    const [czas, setCzas] = useState();
+    const [program, setProgram] = useState();
+
 
     const steps = [
         {
@@ -23,20 +27,32 @@ const Steper: FC<{ isModalOpen: any, setModalOpen: any }> = ({isModalOpen, setMo
             content: <Form stateFromParent={state} setStateFromParent={setState}/>,
         },
         {
-            content: <Opis opis={opis} setOpis={setOpis}/>,
+            content: <Opis opis={opis} setOpis={setOpis} waga={waga} setWaga={setWaga} czas={czas} setCzas={setCzas} program={program} setProgram={setProgram}/>,
         },
 
 
     ];
-
     const handleSave = () => {
-        console.log({nazwa: name, type: rodziaj, photo: fileList, description: opis, ...state});
-        localStorage.setItem('przepis', JSON.stringify({
+        console.log({
             nazwa: name,
             type: rodziaj,
             photo: fileList,
             description: opis,
-            state
+            weight: waga,
+            time: czas,
+            program: program,
+            tags: state.map((el) =>`${el.name} ${el.quantity.weight} ${el.quantity.measurementUnits}`)
+        });
+        localStorage.setItem('przepis', JSON.stringify({
+            key: uuidv4(),
+            name: name,
+            type: rodziaj,
+            photo: fileList,
+            description: opis,
+            weight: waga,
+            time: czas,
+            program:program,
+            tags: state.map((el) =>`${el.name} ${el.quantity.weight} ${el.quantity.measurementUnits}`)
         }));
         setModalOpen(false);
         {

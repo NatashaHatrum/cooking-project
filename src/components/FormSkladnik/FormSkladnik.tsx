@@ -55,36 +55,37 @@ setRodziaj(rodziaj)
                                            rules={[{ required: true, message: 'Pole jest wymagane!' }]}>
                                     <Select
                                         value={rodziaj}
-                                        placeholder='Rodzaj dania&#9913;'
+                                        placeholder='Rodzaj chleba&#9913;'
                                         onChange={handleChangeSelect}
                                         options={[
                                             {
-                                                value: 'zupa',
-                                                label: 'Zupa'
+                                                value: 'ciemny',
+                                                label: 'Ciemny chleb'
                                             },
                                             {
-                                                value: 'glówne',
-                                                label: 'Danie glówne'
+                                                value: 'jasny',
+                                                label: 'Jasny chleb'
                                             },
                                             {
-                                                value: 'salatka',
-                                                label: 'Sałatka'
+                                                value: 'bulka',
+                                                label: 'Bułka'
                                             },
                                             {
-                                                value: 'ciasto',
-                                                label: 'Ciasto'
+                                                value: 'keks',
+                                                label: 'Keks'
                                             },
                                             {
-                                                value: 'hleb',
-                                                label: 'Hleb'
+                                                value: 'bagietka',
+                                                label: 'Bagietka'
+                                            },
+
+                                            {
+                                                value: 'ziarnisty',
+                                                label: 'Ziarnisty chleb'
                                             },
                                             {
-                                                value: 'przystawka',
-                                                label: 'Przystawka'
-                                            },
-                                            {
-                                                value: 'inne',
-                                                label: 'Inne'
+                                                value: 'inny',
+                                                label: 'Inny'
                                             },
 
                                         ]}
