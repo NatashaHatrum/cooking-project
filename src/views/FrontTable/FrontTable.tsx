@@ -3,7 +3,6 @@ import {Col, Row, Table} from 'antd';
 import {TableDataType} from "./FrontTable-tableShape";
 import tableShape from "./FrontTable-tableShape";
 
-
 const data: TableDataType[] = [
     {
         key: '1',

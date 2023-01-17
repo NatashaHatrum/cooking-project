@@ -22,10 +22,11 @@ const database = getDatabase(app);
 
 const dbRef = ref(getDatabase());
 
-const getMaszynyDoChleba = get(child(dbRef, `devices/`)).then((snapshot) => {
+export const getMaszynyDoChleba = get(child(dbRef, `devices/`)).then((snapshot) => {
   if (snapshot.exists()) {
-    console.log(snapshot.val());
+    return snapshot.val();
   } else {
+    return []
     console.log("No data available");
   }
 }).catch((error) => {

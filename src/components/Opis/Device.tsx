@@ -1,16 +1,33 @@
-import {FC, useState, useRef} from 'react';
+import {FC, useState, useRef, useCallback, useEffect} from 'react';
 import {PlusOutlined} from '@ant-design/icons';
 import {Divider, Input, Select, Space, Button} from 'antd';
 import React from 'react';
 import { InputRef } from 'antd';
+import {getMaszynyDoChleba} from "../../firebaseConfig";
 
 let index = 0;
 
 const Device: FC = () => {
     const [items, setItems] = useState(['Mulinex', 'Tefal']);
     const [name, setName] = useState('');
-
+    const [rozpoczynamPobieranie, setRozpoczynamPobieranie]=useState(true)
+    const [maszynyZBazyDanych, setMaszynyZBazyDanych] = useState([])
     const inputRef = useRef<InputRef>(null);
+
+    console.log(rozpoczynamPobieranie)
+
+    const dostanDaneZBazyDoSelecta = useCallback(async ()=> {
+        setRozpoczynamPobieranie(true)
+        const daneZBazy = await getMaszynyDoChleba
+        if(daneZBazy) {
+            console.log(daneZBazy)
+        }
+        setRozpoczynamPobieranie(false)
+    },[])
+
+    useEffect(()=>{
+        dostanDaneZBazyDoSelecta()
+    },[])
 
     const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
@@ -27,6 +44,7 @@ const Device: FC = () => {
 
     return (
         <Select
+            loading={rozpoczynamPobieranie}
             style={{width: 300}}
             placeholder="Urzondzenie do wypieku"
             dropdownRender={(menu) => (

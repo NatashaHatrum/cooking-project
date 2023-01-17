@@ -41,7 +41,7 @@ function App() {
           <Row gutter={[16, 48]} justify='center'>
             {/*     <Form/>*/}
             <Col>
-             {/* <DodajPrszepis/>*/}
+             <DodajPrszepis/>
             </Col>
           </Row>
         </Space>
