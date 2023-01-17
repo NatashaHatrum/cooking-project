@@ -46,7 +46,7 @@ const Device: FC = () => {
         <Select
             loading={rozpoczynamPobieranie}
             style={{width: 300}}
-            placeholder="Urzondzenie do wypieku"
+            placeholder="Urząndzenie do wypieku"
             dropdownRender={(menu) => (
                 <>
                     {menu}
