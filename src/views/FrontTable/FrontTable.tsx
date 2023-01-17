@@ -30,12 +30,18 @@ const data: TableDataType[] = [
 ];
 
 const FrontTable = () => {
-    const [przepisy, setPrzepisy] = useState(data);
+    const [loadingData, setLoadingData] = useState(true)
+    const [przepisy, setPrzepisy] = useState([]);
 
     useEffect(()=>{
+        setLoadingData(true)
         const dataZlokalStorycz = localStorage.getItem('przepis')
-        const stringZamienionyNaDane = JSON.parse(dataZlokalStorycz)
-        setPrzepisy([...data,stringZamienionyNaDane])
+        if(dataZlokalStorycz) {
+            const stringZamienionyNaDane = JSON.parse(dataZlokalStorycz)
+            setPrzepisy([...data,stringZamienionyNaDane])
+        }
+        else setPrzepisy(data)
+        setLoadingData(false)
     },[]);
 
     return (
@@ -43,6 +49,7 @@ const FrontTable = () => {
             <Col span={18} offset={2}>
                 <Table
                     columns={tableShape()}
+                    loading={loadingData}
                     dataSource={przepisy}
                     sortDirections={['ascend', 'descend']}
                 />

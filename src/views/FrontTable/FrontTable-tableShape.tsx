@@ -25,7 +25,6 @@ const tableShape = () => {
             title: 'Nazwa',
             dataIndex: 'name',
             key: 'name',
-            render: (text) => <a>{text}</a>,
         },
         {
             title: 'Rodziaj',
@@ -37,7 +36,7 @@ const tableShape = () => {
             title: 'Waga - gramy',
             dataIndex: 'weight',
             key: 'weight',
-            sorter: (a, b) => a.weight - b.weight,
+            sorter: (a, b) => a?.weight - b?.weight,
             sortDirections: ['descend', 'ascend'],
         },
         {
@@ -51,23 +50,23 @@ const tableShape = () => {
             dataIndex: 'tags',
             render: (_, {tags}) => (
                 <>
-                    {tags.map((tag) => {
-                        let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag.includes('Woda')) {
+                    {tags && tags?.map((tag) => {
+                        let color = tag?.length > 5 ? 'geekblue' : 'green';
+                        if (tag?.includes('Woda')) {
                             color = 'blue';
                         }
-                        if (tag.includes('Olej')) {
+                        if (tag?.includes('Olej')) {
                             color = 'gold';
                         }
-                        if (tag.includes('Mąka')) {
+                        if (tag?.includes('Mąka')) {
                             color = 'gray';
                         }
-                        if (tag.includes('Drożdze')) {
+                        if (tag?.includes('Drożdze')) {
                             color = 'DarkGoldenRod';
                         }
                         return (
                             <Tag className={styles.tableTag} color={color} key={tag}>
-                                {tag.toUpperCase()}
+                                {tag?.toUpperCase()}
                             </Tag>
                         );
                     })}
@@ -96,7 +95,7 @@ const tableShape = () => {
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <a>Udostępnij<br/>{record.name}</a>
+                    <a>Udostępnij<br/>{record?.name}</a>
                 </Space>
             ),
         },

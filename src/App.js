@@ -1,5 +1,5 @@
 import './App.css';
-import {Row, Col, Typography, Space} from 'antd';
+import { Row, Col, Typography, Space } from 'antd';
 import React from "react";
 import GetWether from "./Api";
 import Form from "./components/Form";
@@ -21,13 +21,13 @@ function App() {
       <MainLayout>
         <div className='glownePhoto' alt="hlebek"><img src={mainPhoto}/>
         </div>
-          <Space direction="vertical" size="middle" style={{ display: 'flex',  marginTop: '2%'}}>
+        <Space direction="vertical" size="middle" style={{display: 'flex', marginTop: '2%'}}>
           <Row gutter={[16, 48]} justify='center'>
-              <Col >
-          <Title className='title'  >Książka przepisów "Pyszny chlebek"</Title>
-              </Col>
+            <Col>
+              <Title className='title'>Książka przepisów "Pyszny chlebek"</Title>
+            </Col>
           </Row>
-          </Space>
+        </Space>
         {/*  <Row gutter={[12, 12]} justify='center'>
                 <Col>
                     <Kalkulator/>
@@ -37,17 +37,17 @@ function App() {
                 </Col>
             </Row>
             <GetWether/>*/}
-          <Space direction="vertical" size="middle" style={{ display: 'flex', marginBottom: '6%', marginTop: '3%'}}>
-        <Row gutter={[16, 48]} justify='center'>
-          {/*     <Form/>*/}
-          <Col >
-            <DodajPrszepis/>
-          </Col>
-        </Row>
-          </Space>
-          <Row gutter={[12, 12]} justify='center'>
-        <FrontTable/>
+        <Space direction="vertical" size="middle" style={{display: 'flex', marginBottom: '6%', marginTop: '3%'}}>
+          <Row gutter={[16, 48]} justify='center'>
+            {/*     <Form/>*/}
+            <Col>
+             {/* <DodajPrszepis/>*/}
+            </Col>
           </Row>
+        </Space>
+        <Row gutter={[12, 12]} justify='center'>
+          <FrontTable/>
+        </Row>
       </MainLayout>
   )
 }
